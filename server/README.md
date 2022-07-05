@@ -2,7 +2,7 @@
 
 #### ➡️ Simple Golang Api to download youtube videos ✨
 
-#### ➡️ Here the frontend code: [`💻 Client branch`](https://github.com/Ilingu/go-ytdl/tree/client)
+#### ➡️ Here the frontend code: [`💻 Client Code`](https://github.com/Ilingu/go-ytdl/tree/main/client)
 
 ## Purpose:
 

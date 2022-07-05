@@ -2,7 +2,7 @@
 
 #### ➡️ Simple frontend that make api request to the go-api and download the video ✨
 
-#### ➡️ Here the backend code: [`💻 Server branch`](https://github.com/Ilingu/go-ytdl/tree/main)
+#### ➡️ Here the backend code: [`💻 Server Code`](https://github.com/Ilingu/go-ytdl/tree/main/server)
 
 ## Purpose:
 

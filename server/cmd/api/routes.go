@@ -11,8 +11,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// TODO: mp4 to mp3 converter
-
 type RoutesHandler struct{}
 
 func (r RoutesHandler) extractAndDownloadVideo(c *gin.Context) {
