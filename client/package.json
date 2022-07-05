@@ -1,0 +1,21 @@
+{
+  "name": "go-ytld-client",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "devDependencies": {
+    "@astrojs/svelte": "^0.2.0",
+    "@astrojs/tailwind": "^0.2.2",
+    "@astrojs/vercel": "^0.2.4",
+    "astro": "^1.0.0-beta.63",
+    "autoprefixer": "10.0.2",
+    "daisyui": "^2.18.0",
+    "postcss": ">=8.3.3 <9.0.0",
+    "svelte": "^3.46.4"
+  }
+}

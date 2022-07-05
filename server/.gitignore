@@ -1,0 +1,6 @@
+.env
+ressources.md
+/cmd/bin
+
+videos/*.mp4
+videos/*.mp3
