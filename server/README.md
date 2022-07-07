@@ -14,7 +14,7 @@ Exerce my golang skills ☄️
 2. `Go` (Obvioulsy...) ✨
 3. `Gin` for the backend
 4. `Astro` with **Svelte** for the frontend (on the edge💛)
-5. `Heroku` 🌐 [API Endpoint](https://go-ytdl.herokuapp.com/)
+5. `railway.app` 🌐 [API Endpoint](https://go-ytdl.up.railway.app/)
 
 ## Credit:
 
