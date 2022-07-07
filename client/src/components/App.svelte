@@ -23,6 +23,9 @@
 
   onMount(() => {
     SetIsLoggedIn(true);
+    document.cookie = `SessionActive=yes; expires=${new Date(
+      Date.now() * 36000
+    ).toUTCString()};`;
   });
 
   const WaitDebounce = debounce(() => {
