@@ -4,9 +4,11 @@ specifiers:
   '@astrojs/svelte': ^0.2.0
   '@astrojs/tailwind': ^0.2.2
   '@astrojs/vercel': ^0.2.4
+  '@types/lodash.debounce': ^4.0.7
   astro: ^1.0.0-beta.63
   autoprefixer: 10.0.2
   daisyui: ^2.18.0
+  lodash.debounce: ^4.0.8
   postcss: '>=8.3.3 <9.0.0'
   svelte: ^3.46.4
 
@@ -14,9 +16,11 @@ devDependencies:
   '@astrojs/svelte': 0.2.0_s3dopqgs4h45owyu2kxaf6kyfu
   '@astrojs/tailwind': 0.2.2
   '@astrojs/vercel': 0.2.4
+  '@types/lodash.debounce': 4.0.7
   astro: 1.0.0-beta.63
   autoprefixer: 10.0.2_postcss@8.4.14
   daisyui: 2.18.0_wztxpj6jpdi3mqy6u76cehzodq
+  lodash.debounce: 4.0.8
   postcss: 8.4.14
   svelte: 3.48.0
 
@@ -587,6 +591,16 @@ packages:
 
   /@types/json5/0.0.30:
     resolution: {integrity: sha512-sqm9g7mHlPY/43fcSNrCYfOeX9zkTTK+euO5E6+CVijSMm5tTjkVdwdqRkY3ljjIAf8679vps5jKUoJBCLsMDA==}
+    dev: true
+
+  /@types/lodash.debounce/4.0.7:
+    resolution: {integrity: sha512-X1T4wMZ+gT000M2/91SYj0d/7JfeNZ9PeeOldSNoE/lunLeQXKvkmIumI29IaKMotU/ln/McOIvgzZcQ/3TrSA==}
+    dependencies:
+      '@types/lodash': 4.14.182
+    dev: true
+
+  /@types/lodash/4.14.182:
+    resolution: {integrity: sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q==}
     dev: true
 
   /@types/mdast/3.0.10:
@@ -2465,6 +2479,10 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       p-locate: 5.0.0
+    dev: true
+
+  /lodash.debounce/4.0.8:
+    resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
     dev: true
 
   /lodash/4.17.21:

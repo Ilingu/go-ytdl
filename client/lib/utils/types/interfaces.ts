@@ -1,6 +1,6 @@
 import type { AlertType } from "./types";
 
-export interface FunctionJob<T = any> {
+export interface FunctionJob<T> {
   success: boolean;
   data?: T;
 }

@@ -1,16 +1,20 @@
-import { FunctionJob, PingApiRes } from "./types/interfaces";
+import {
+  DownloadPayloadShape,
+  FunctionJob,
+  PingApiRes,
+} from "./types/interfaces";
 
-export const HandleApiCall = async (
+export const HandleApiCall = async <T>(
   route: "ping" | "download",
   password: string,
-  data?: {}
-): Promise<FunctionJob> => {
-  const URL = `https://go-ytdl.herokuapp.com/${route}`;
-  if (IsEmptyString(password) || !IsValidURL(URL)) return;
+  data?: DownloadPayloadShape
+): Promise<FunctionJob<T>> => {
+  const ApiUrl = `https://go-ytdl.herokuapp.com/${route}`;
+  if (IsEmptyString(password) || !IsValidURL(ApiUrl)) return;
 
   const PING = route === "ping";
 
-  const ApiRes = await fetch(URL, {
+  const ApiRes = await fetch(ApiUrl, {
     method: PING ? "GET" : "POST",
     body: !PING ? JSON.stringify(data) : undefined,
     headers: {
@@ -20,6 +24,7 @@ export const HandleApiCall = async (
 
   if (!ApiRes.ok) return { success: false };
 
+  // /ping
   if (PING) {
     const ResData: PingApiRes = await ApiRes.json();
 
@@ -27,8 +32,11 @@ export const HandleApiCall = async (
     return { success: true };
   }
 
-  // Download
+  // /download
   if (!PING) {
+    const FileData = await ApiRes.blob(); // fetch file blob
+    const DownloadableFileUrl = URL.createObjectURL(FileData); // store file
+    return { success: true, data: DownloadableFileUrl as unknown as T };
   }
 };
 
@@ -44,8 +52,17 @@ export const IsValidURL = (url: string): boolean => {
   }
 };
 
-export const IsValidYoutubeUrl = (): boolean => false;
-export const IsValidYoutubeID = (): boolean => false;
+export const ParseYoutubeUrl = (url: string): boolean | string => {
+  const reg =
+    /(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/im;
+
+  const matches = url.match(reg);
+  if (!matches || IsEmptyString(matches[1]) || !IsValidYoutubeID(matches[1]))
+    return false;
+
+  return matches[1];
+};
+export const IsValidYoutubeID = (id: string): boolean => id.length === 11;
 
 // Helpers
 export const ParseCookies = (cookies: string) =>

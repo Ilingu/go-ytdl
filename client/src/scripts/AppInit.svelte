@@ -1,6 +1,7 @@
 <script lang="ts">
   import {
     ChangeTheme,
+    ClearPassword,
     GetPassword,
     SetIsLoggedIn,
   } from "lib/utils/ClientFuncs";
@@ -34,7 +35,10 @@
     if (!UserPassword) return;
 
     const IsRightPassword = await IsPasswordValid(UserPassword);
-    if (!IsRightPassword) return;
+    if (!IsRightPassword) {
+      ClearPassword(); // If stored
+      return SetIsLoggedIn(false);
+    }
 
     SetIsLoggedIn(true);
     window.sessionStorage.setItem("connected", "true");

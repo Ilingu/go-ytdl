@@ -15,13 +15,17 @@ const ParsedCookie = ParseCookies(cookies);
 
 if (!ParsedCookie || !ParsedCookie["UserPsw"]) return LoginRedirect();
 if (IsEmptyString(ParsedCookie["UserPsw"])) return LoginRedirect();
-
-const IsRightPassword = await IsPasswordValid(ParsedCookie["UserPsw"])
-if (!IsRightPassword) return LoginRedirect();
+if (ParsedCookie["SessionActive"] !== "yes") {
+	const IsRightPassword = await IsPasswordValid(ParsedCookie["UserPsw"])
+	if (!IsRightPassword) return LoginRedirect();
+}
 ---
 
 <HTMLLayout>
 	<BaseLayout>
-		<App client:load />
+		<section>
+			<h1 class="text-center text-2xl sm:text-4xl font-mono mb-3 text-primary font-semibold">Go Youtube Downloader</h1>
+			<App client:load />
+		</section>
 	</BaseLayout>
 </HTMLLayout>

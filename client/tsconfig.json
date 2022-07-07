@@ -15,6 +15,7 @@
     "outDir": "./dist",
     // Other
     "baseUrl": ".",
+    "allowSyntheticDefaultImports": true,
     "removeComments": true,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
