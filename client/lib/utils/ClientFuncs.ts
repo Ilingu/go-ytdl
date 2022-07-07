@@ -37,10 +37,16 @@ export const PushAlert = (args: AlertArgsShape) => {
   document.dispatchEvent(AlertEvent);
 };
 
-export const HandleDownload = (DownloadableFileUrl: string) => {
+export const HandleDownload = (
+  DownloadableFileUrl: string,
+  VideoID: string,
+  ToMp3: boolean
+) => {
+  const filename = `GoYtdl-${VideoID}.${ToMp3 ? "mp3" : "mp4"}`;
+
   const DownloadElement = document.createElement("a");
   DownloadElement.setAttribute("href", DownloadableFileUrl);
-  DownloadElement.setAttribute("download", "");
+  DownloadElement.setAttribute("download", filename);
 
   DownloadElement.style.display = "none";
   document.body.appendChild(DownloadElement);

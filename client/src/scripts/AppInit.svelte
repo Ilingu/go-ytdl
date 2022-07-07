@@ -22,6 +22,9 @@
     const HomePage = PagePath === "/";
     title = `GoYtdl${HomePage ? " / Home" : PagePath.replace("/", " / ")}`;
 
+    // PWA A2HS
+    A2HS();
+
     // Check Connected State
     if (!HomePage) CheckUserState();
   });
@@ -42,6 +45,35 @@
 
     SetIsLoggedIn(true);
     window.sessionStorage.setItem("connected", "true");
+  };
+
+  const A2HS = () => {
+    /* Other Types */
+    interface BeforeInstallPromptEvent extends Event {
+      readonly platforms: Array<string>;
+      readonly userChoice: Promise<{
+        outcome: "accepted" | "dismissed";
+        platform: string;
+      }>;
+      prompt(): Promise<void>;
+    }
+
+    window.addEventListener(
+      "beforeinstallprompt",
+      (e: BeforeInstallPromptEvent) => {
+        e.preventDefault();
+        let deferredPrompt = e;
+
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === "accepted") {
+            console.log("User accepted the A2HS prompt");
+          } else {
+            console.log("User dismissed the A2HS prompt");
+          }
+        });
+      }
+    );
   };
 </script>
 

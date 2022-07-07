@@ -46,6 +46,7 @@
 
     loading = true; // loading
 
+    const ToMp3Copy = ToMp3;
     const { success, data: DownloadableFileUrl } = await HandleApiCall<string>(
       "download",
       password,
@@ -65,7 +66,7 @@
         duration: 6000,
       });
 
-    HandleDownload(DownloadableFileUrl); // Download file
+    HandleDownload(DownloadableFileUrl, VideoID as string, ToMp3Copy); // Download file
   };
   const HandleChange = (evt: {
     currentTarget: EventTarget & HTMLInputElement;
