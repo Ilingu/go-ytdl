@@ -16,11 +16,11 @@ export const StorePassword = (password: string) => {
   ClearPassword(false);
 
   document.cookie = `UserPsw=${password}; expires=${new Date(
-    Date.now() + 7776000000 // 90d
-  ).toISOString()}`;
+    Date.now() + 604800000 // 7d
+  ).toUTCString()};`;
   document.cookie = `SessionActive=yes; expires=${new Date(
-    Date.now() + 153360000000
-  ).toISOString()}`; // 153360000000 = 5y = Session Cookie
+    Date.now() * 36000
+  ).toUTCString()};`; // 153360000000 = 5y = Session Cookie
 };
 export const ClearPassword = (msg = true) => {
   document.cookie = "UserPsw=; expires=Thu, 01 Jan 1970 00:00:00 UTC";

@@ -26,9 +26,10 @@ func main() {
 
 	r := gin.Default()
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"*"},
+		AllowOrigins:     []string{"https://go-ytdl.vercel.app", "http://localhost:3000"},
 		AllowMethods:     []string{"GET", "POST"},
 		AllowHeaders:     []string{"Origin", "Authorization", "Content-Type"},
+		ExposeHeaders:    []string{"Video-Title", "Video-Thumbnail", "Video-Author", "Video-Duration"},
 		AllowCredentials: true,
 		MaxAge:           5 * time.Hour,
 	})) // Cors

@@ -1,14 +1,16 @@
 import {
   DownloadPayloadShape,
+  DownloadResShape,
   FunctionJob,
   PingApiRes,
+  VideoInfosShape,
 } from "./types/interfaces";
 
-export const HandleApiCall = async <T>(
+export const HandleApiCall = async (
   route: "ping" | "download",
   password: string,
   data?: DownloadPayloadShape
-): Promise<FunctionJob<T>> => {
+): Promise<FunctionJob<DownloadResShape>> => {
   const ApiUrl = `https://go-ytdl.herokuapp.com/${route}`;
   if (IsEmptyString(password) || !IsValidURL(ApiUrl)) return;
 
@@ -36,7 +38,18 @@ export const HandleApiCall = async <T>(
   if (!PING) {
     const FileData = await ApiRes.blob(); // fetch file blob
     const DownloadableFileUrl = URL.createObjectURL(FileData); // store file
-    return { success: true, data: DownloadableFileUrl as unknown as T };
+
+    const VideoInfo: VideoInfosShape = {
+      title: ApiRes?.headers.get("Video-Title"),
+      thumbnail: ApiRes?.headers.get("Video-Thumbnail"),
+      author: ApiRes?.headers.get("Video-Author"),
+      duration: ApiRes?.headers.get("Video-Duration"),
+    };
+
+    return {
+      success: true,
+      data: { FileUrl: DownloadableFileUrl, ...VideoInfo },
+    };
   }
 };
 

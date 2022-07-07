@@ -28,7 +28,7 @@ func (r RoutesHandler) extractAndDownloadVideo(c *gin.Context) {
 		}
 	}
 
-	err = youtubedl.YtDownloader(videoID, body.ToMp3)
+	VideoInfo, err := youtubedl.YtDownloader(videoID, body.ToMp3)
 	if err != nil {
 		log.Println(err)
 		ReturnErrorJSON(c, http.StatusInternalServerError, "Cannot Get Video Info")
@@ -36,6 +36,10 @@ func (r RoutesHandler) extractAndDownloadVideo(c *gin.Context) {
 	}
 
 	c.Header("Content-Disposition", "attachment")
+	c.Header("Video-Title", VideoInfo.Title)
+	c.Header("Video-Thumbnail", VideoInfo.Thumbnail)
+	c.Header("Video-Author", VideoInfo.Author)
+	c.Header("Video-Duration", VideoInfo.Duration.String())
 
 	filepath := fmt.Sprintf("%s/%s", getVideoDirPath(), videoID)
 	Mp4, Mp3 := filepath+".mp4", filepath+".mp3"

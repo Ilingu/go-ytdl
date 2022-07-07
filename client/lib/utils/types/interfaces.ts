@@ -21,3 +21,14 @@ export interface PingApiRes {
   success: boolean;
   data: "pong";
 }
+
+export interface DownloadResShape extends VideoInfosShape {
+  FileUrl: string;
+}
+
+export interface VideoInfosShape {
+  title: string;
+  thumbnail?: string;
+  author: string;
+  duration: string;
+}
