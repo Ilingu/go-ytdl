@@ -1,4 +1,5 @@
 import { IsLoggedIn } from "lib/store/store";
+import { THEMES } from "./types/enums";
 import { AlertArgsShape } from "./types/interfaces";
 import { IsEmptyString } from "./UtilsFuncs";
 
@@ -27,6 +28,13 @@ export const SetIsLoggedIn = (NewVal: boolean) => IsLoggedIn.set(NewVal);
 export const PushAlert = (args: AlertArgsShape) => {
   const AlertEvent = new CustomEvent("ui-alert", { detail: args });
   document.dispatchEvent(AlertEvent);
+};
+
+export const ChangeTheme = (NewTheme: THEMES) => {
+  if (IsEmptyString(NewTheme)) return;
+
+  window.localStorage.setItem("app-theme", NewTheme);
+  document.documentElement.setAttribute("data-theme", NewTheme);
 };
 
 // Helpers

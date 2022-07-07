@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { IsLoggedIn } from "../../lib/store/store";
+  import { IsLoggedIn } from "../../../lib/store/store";
 </script>
 
 {#if $IsLoggedIn}

@@ -1,9 +1,9 @@
 ---
-import Metatags from "@components/Layouts/Metatags.svelte";
+import AppInit from "../scripts/AppInit.svelte";
 import AlertManager from "@components/Layouts/AlertManager.svelte";
 ---
 
-<html lang="en">
+<html lang="en" data-theme="halloween">
 
 <head>
   <meta charset="utf-8" />
@@ -20,6 +20,7 @@ import AlertManager from "@components/Layouts/AlertManager.svelte";
   <meta name="author" content="Ilingu" />
   <meta name="application-name" content="Go Ytdl" />
   <meta name="description" content="Simple Youtube downloader written in go" />
+  <title>GoYtdl</title>
   <!-- Google -->
   <meta name="robots" content="index,follow,noodp" />
   <meta name="googlebot" content="index,follow" />
@@ -38,7 +39,7 @@ import AlertManager from "@components/Layouts/AlertManager.svelte";
     </a>
   </noscript>
 
-  <Metatags client:load title={null} />
+  <AppInit client:load />
   <AlertManager client:load />
   <slot />
 </body>
