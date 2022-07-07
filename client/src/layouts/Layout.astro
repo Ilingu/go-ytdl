@@ -1,0 +1,10 @@
+---
+import Footer from "@components/Layouts/Footer.astro";
+import Navbar from "@components/Layouts/Navbar.astro";
+---
+
+<main class="h-screen w-screen flex flex-col justify-between">
+  <Navbar />
+  <slot />
+  <Footer />
+</main>

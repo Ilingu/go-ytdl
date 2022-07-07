@@ -1,13 +1,11 @@
 ---
 import BaseLayout from '@layouts/Layout.astro';
-import App from '@components/App.svelte';
 import HTMLLayout from '@layouts/HTMLLayout.astro';
-
-// Check Connected
+import LoginForm from '@components/Auth/LoginForm.svelte';
 ---
 
 <HTMLLayout>
-	<BaseLayout>
-		<App client:load />
-	</BaseLayout>
+  <BaseLayout>
+    <LoginForm client:load />
+  </BaseLayout>
 </HTMLLayout>

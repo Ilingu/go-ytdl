@@ -26,6 +26,9 @@ func main() {
 	r.Use(AuthRequired()) // Auth
 
 	routes := RoutesHandler{}
+	r.GET("/ping", func(ctx *gin.Context) {
+		ctx.JSON(http.StatusAccepted, gin.H{"success": true, "data": "pong"})
+	})
 	r.POST("/download", routes.extractAndDownloadVideo)
 
 	// Lauch App
