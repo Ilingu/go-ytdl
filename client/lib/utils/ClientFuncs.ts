@@ -1,7 +1,7 @@
 import { IsLoggedIn } from "lib/store/store";
 import { THEMES } from "./types/enums";
 import { AlertArgsShape } from "./types/interfaces";
-import { IsEmptyString } from "./UtilsFuncs";
+import { IsEmptyString, ParseCookies } from "./UtilsFuncs";
 
 export const GetPassword = (): string => {
   const ParsedCookie = ParseCookies(document.cookie);
@@ -36,15 +36,3 @@ export const ChangeTheme = (NewTheme: THEMES) => {
   window.localStorage.setItem("app-theme", NewTheme);
   document.documentElement.setAttribute("data-theme", NewTheme);
 };
-
-// Helpers
-const ParseCookies = (cookies: string) =>
-  cookies
-    .split("; ")
-    .map((cookie) => {
-      const [Key, Value] = cookie.split("=");
-      return {
-        [Key]: Value,
-      };
-    })
-    .reduce((prev, curr) => ({ ...prev, ...curr }), {});

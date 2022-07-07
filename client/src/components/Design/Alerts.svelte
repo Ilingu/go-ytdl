@@ -19,7 +19,7 @@
 </script>
 
 <div
-  class={`alert-type-${type} alert shadow-lg w-1/6 absolute top-2 right-2`}
+  class={`alert-type-${type} alert shadow-lg w-1/6 absolute top-2 right-2 z-[100]`}
   transition:fade
 >
   <div>

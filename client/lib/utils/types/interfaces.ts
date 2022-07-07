@@ -10,3 +10,14 @@ export interface AlertArgsShape {
   type: AlertType;
   duration?: number;
 }
+
+export interface DownloadPayloadShape {
+  videoID?: string;
+  youtubeURL?: string;
+  toMp3?: boolean;
+}
+
+export interface PingApiRes {
+  success: boolean;
+  data: "pong";
+}

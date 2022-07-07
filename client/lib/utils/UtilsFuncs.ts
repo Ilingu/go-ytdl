@@ -1,13 +1,35 @@
-import { FunctionJob } from "./types/interfaces";
+import { FunctionJob, PingApiRes } from "./types/interfaces";
 
-export const CallApi = async (
-  path: string,
-  resType: "json" | "file"
+export const HandleApiCall = async (
+  route: "ping" | "download",
+  password: string,
+  data?: {}
 ): Promise<FunctionJob> => {
-  if (IsEmptyString(path)) return;
+  const URL = `https://go-ytdl.herokuapp.com/${route}`;
+  if (IsEmptyString(password) || !IsValidURL(URL)) return;
 
-  const URL = `https://go-ytdl.herokuapp.com/${path}`;
-  if (!IsValidURL(URL)) return;
+  const PING = route === "ping";
+
+  const ApiRes = await fetch(URL, {
+    method: PING ? "GET" : "POST",
+    body: !PING ? JSON.stringify(data) : undefined,
+    headers: {
+      Authorization: password,
+    },
+  });
+
+  if (!ApiRes.ok) return { success: false };
+
+  if (PING) {
+    const ResData: PingApiRes = await ApiRes.json();
+
+    if (!ResData || !ResData?.success) return { success: false };
+    return { success: true };
+  }
+
+  // Download
+  if (!PING) {
+  }
 };
 
 export const IsEmptyString = (str: string): boolean =>
@@ -24,3 +46,15 @@ export const IsValidURL = (url: string): boolean => {
 
 export const IsValidYoutubeUrl = (): boolean => false;
 export const IsValidYoutubeID = (): boolean => false;
+
+// Helpers
+export const ParseCookies = (cookies: string) =>
+  cookies
+    .split("; ")
+    .map((cookie) => {
+      const [Key, Value] = cookie.split("=");
+      return {
+        [Key]: Value,
+      };
+    })
+    .reduce((prev, curr) => ({ ...prev, ...curr }), {});

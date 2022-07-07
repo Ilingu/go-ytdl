@@ -1,10 +1,15 @@
 <script lang="ts">
-  import { PushAlert } from "lib/utils/ClientFuncs";
+  import {
+    PushAlert,
+    SetIsLoggedIn,
+    StorePassword,
+  } from "lib/utils/ClientFuncs";
+  import { IsPasswordValid } from "lib/utils/ServerFuncs";
   import { IsEmptyString } from "lib/utils/UtilsFuncs";
 
   let password: string = "";
 
-  const HandleSubmit = () => {
+  const HandleSubmit = async () => {
     if (IsEmptyString(password))
       return PushAlert({
         text: "Empty Fields",
@@ -12,7 +17,21 @@
         duration: 2500,
       });
 
-    // Call
+    const IsRightPassword = await IsPasswordValid(password);
+    if (!IsRightPassword)
+      return PushAlert({
+        text: "Wrong Password!",
+        type: "error",
+        duration: 5000,
+      });
+
+    StorePassword(password);
+    SetIsLoggedIn(true);
+    PushAlert({
+      text: "Right Password!",
+      type: "success",
+      duration: 3000,
+    });
   };
 </script>
 

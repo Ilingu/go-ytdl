@@ -2,8 +2,22 @@
 import BaseLayout from '@layouts/Layout.astro';
 import App from '@components/App.svelte';
 import HTMLLayout from '@layouts/HTMLLayout.astro';
+import { IsEmptyString, ParseCookies } from 'lib/utils/UtilsFuncs';
+import { IsPasswordValid } from 'lib/utils/ServerFuncs';
 
-// Check Connected
+const LoginRedirect = () => Astro.redirect('/login')
+
+// Check Connected, if not redirect to login page
+const cookies = Astro.request.headers.get('cookie');
+if (IsEmptyString(cookies)) return LoginRedirect()
+
+const ParsedCookie = ParseCookies(cookies);
+
+if (!ParsedCookie || !ParsedCookie["UserPsw"]) return LoginRedirect();
+if (IsEmptyString(ParsedCookie["UserPsw"])) return LoginRedirect();
+
+const IsRightPassword = await IsPasswordValid(ParsedCookie["UserPsw"])
+if (!IsRightPassword) return LoginRedirect();
 ---
 
 <HTMLLayout>

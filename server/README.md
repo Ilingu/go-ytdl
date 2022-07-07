@@ -13,7 +13,8 @@ Exerce my golang skills ☄️
 1. **Elegance** ✅
 2. `Go` (Obvioulsy...) ✨
 3. `Gin` for the backend
-4. `Heroku` 🌐 [API Endpoint](https://go-ytdl.herokuapp.com/)
+4. `Astro` with **Svelte** for the frontend (on the edge💛)
+5. `Heroku` 🌐 [API Endpoint](https://go-ytdl.herokuapp.com/)
 
 ## Credit:
 
