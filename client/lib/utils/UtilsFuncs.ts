@@ -11,7 +11,7 @@ export const HandleApiCall = async (
   password: string,
   data?: DownloadPayloadShape
 ): Promise<FunctionJob<DownloadResShape>> => {
-  const ApiUrl = `https://go-ytdl.herokuapp.com/${route}`;
+  const ApiUrl = `https://go-ytdl-01dm.onrender.com/${route}`;
   if (IsEmptyString(password) || !IsValidURL(ApiUrl)) return;
 
   const PING = route === "ping";
