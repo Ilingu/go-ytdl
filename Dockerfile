@@ -7,13 +7,14 @@ RUN mkdir /app
 COPY . /app
  
 # Set working directory
-WORKDIR /app
+WORKDIR /app/server
 
 # Set prod config env variables
 ENV APP_MODE=prod
 
+RUN mkdir -p cmd/bin
 # go build will build an executable file named server in the current directory
-RUN go build -o ./server/cmd/bin ./server/cmd/api
+RUN go build -o ./cmd/bin ./cmd/api
 
 # Run the server executable
-CMD [ "/app/server/cmd/bin/api" ]
+CMD [ "/app/cmd/bin/api" ]
