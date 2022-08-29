@@ -1,5 +1,8 @@
 FROM golang:1.18-alpine
 
+# Installing ffmpeg
+RUN apk add ffmpeg
+
 # Create a directory for the app
 RUN mkdir /app
  
