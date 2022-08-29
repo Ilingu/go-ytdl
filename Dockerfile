@@ -20,4 +20,4 @@ RUN mkdir -p cmd/bin
 RUN go build -o ./cmd/bin ./cmd/api
 
 # Run the server executable
-CMD [ "/app/cmd/bin/api" ]
+CMD [ "/app/server/cmd/bin/api" ]
